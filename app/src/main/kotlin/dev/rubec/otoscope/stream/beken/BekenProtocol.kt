@@ -53,10 +53,10 @@ internal object BekenProtocol {
         return ((packet[18].toInt() shl 8) or (packet[19].toInt() and 0xff)).toShort().toInt()
     }
 
-    /** Picture rotation in degrees from the camera's own roll [angle]. The sign
-     *  and the half turn were chosen from a few poses and are not confirmed
-     *  against a rotating picture, see docs/beken-protocol.md. */
-    fun rotationDegrees(angle: Int): Float = (((angle + 180) % 360) + 360) % 360f
+    /** Picture rotation in degrees from the camera's own roll [angle], passed
+     *  through unchanged. Checked on a real camera: an extra half turn put the
+     *  picture upside down. See docs/beken-protocol.md. */
+    fun rotationDegrees(angle: Int): Float = (((angle % 360) + 360) % 360).toFloat()
 
     /** The device-info JSON: `brand` is the model shown to the user, the rest
      *  goes to diagnostics. Null when [data] isn't the camera's JSON. */

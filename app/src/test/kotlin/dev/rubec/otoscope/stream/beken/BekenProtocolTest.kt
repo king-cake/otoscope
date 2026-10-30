@@ -28,11 +28,11 @@ class BekenProtocolTest {
         assertNull(BekenProtocol.parseAngle(ByteArray(19)))
     }
 
-    @Test fun `rotation is the cameras own angle plus half a turn`() {
-        assertEquals(0f, BekenProtocol.rotationDegrees(-180), 0.01f)
-        assertEquals(85f, BekenProtocol.rotationDegrees(-95), 0.01f)
-        assertEquals(174f, BekenProtocol.rotationDegrees(-6), 0.01f)
-        assertEquals(180f, BekenProtocol.rotationDegrees(-360), 0.01f)
+    @Test fun `rotation is the cameras own angle`() {
+        assertEquals(271f, BekenProtocol.rotationDegrees(-89), 0.01f)
+        assertEquals(265f, BekenProtocol.rotationDegrees(-95), 0.01f)
+        assertEquals(354f, BekenProtocol.rotationDegrees(-6), 0.01f)
+        assertEquals(0f, BekenProtocol.rotationDegrees(-360), 0.01f)
     }
 
     @Test fun `only the Bouffalo subnet uses the Bouffalo session`() {
